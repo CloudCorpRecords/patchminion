@@ -169,3 +169,77 @@ What the live runs changed in the code (prompt/parsing, gate intact):
 
 The deterministic stub example (`examples/expected-output-stub.md`,
 `Mode: **stub**`) is untouched by the live runs.
+
+## Wave-2 push 2026-10-28
+
+Publishing pass for the Cortensor Hackathon #5 entry (DoraHacks
+hackathon 2418, submission deadline Dec 18, 2026).
+
+### Repo published
+
+- **https://github.com/CloudCorpRecords/patchminion** (public, default
+  branch `main`). The name was free: a genuine GitHub 404 was confirmed
+  before creation; the repo was created through the API via the local
+  PAT proxy.
+- Pack push: 20 files, head after the pack commit
+  `9efc5d306969d120bb6788db824a03d86b596d28`. Verified by reading the
+  repo back through the API (root, `examples/`, `patchminion/`, `tests/`
+  listings with sizes matching the local pack; README read back with the
+  Build Disclosure intact).
+- Route note: VM egress to api.github.com was severely degraded all day
+  (TLS handshakes of 12-30s; GitHub itself reported all systems
+  operational). The PAT Git Data push stalled after 4 of 20 blobs, so the
+  pack was completed in a single connector `push_files` call and verified
+  by head SHA before any other route ran again (no parallel pushes).
+- Excluded from the push: `probe_write.db`, `.venv/`, `.openminion/`
+  session state, `__pycache__`, `.pytest_cache`, and the `out/` run
+  artifacts. Secret scan before pushing: grep over the staged tree for
+  `ghp_`, `github_pat_`, `sk-`, `AKIA`, private-key markers and non-empty
+  `api_key` values came back clean. The only key-shaped string in the
+  tree is the literal placeholder `PATCHMINION_PROXY_KEY=proxy` (the
+  local proxy ignores the incoming key; it is not a credential).
+
+### Demo video
+
+- `demo.mp4` is in the repo root, added in commit
+  `91b9215b5c127badd404db7d595443f9e02374cf` (3,249,658 bytes; read back
+  through the API, size and blob SHA match). At 3.25 MB it exceeds the
+  connector push argument limit, so it went through the PAT Git Data
+  route via the local gh-proxy with retries on proxy 502s.
+- Method, stated plainly: a real terminal session was captured with
+  util-linux `script` (typescript + timing log) while the unmodified
+  tool ran end-to-end following DEMO-SCRIPT.md (fixture, agent source,
+  live model run, report, stub run, pytest). The capture was rendered
+  into a 1920x1080 MP4 (PIL frames into ffmpeg/libx264). Recorded
+  content and order are verbatim; scheduling uses per-line reading dwell
+  because the capture's wall clock (~21 min) is dominated by model waits
+  through the degraded egress tunnel. Idle waits are compressed; nothing
+  was retyped or fabricated. Duration: 127 seconds.
+- The on-camera live run reported `Mode: model` with 3/6 model verdicts
+  (#101 bug P0, #102 feature P3, #105 bug P1; #103, #104, #106 fell back,
+  with reasons in the run log). Fallback counts vary run to run with
+  provider behavior; the committed `examples/expected-output-model.md`
+  remains the 4/6 reference run from earlier the same day.
+- Capture history: take 1 exposed a bug in the demo script itself (no
+  `out/` directory, so the CLI crashed writing the report; fixed with
+  `mkdir -p out`). Take 2 was lost when the VM restarted mid-run and
+  wiped /tmp. Take 3 was captured with all artifacts under `~/workspace`
+  so they survive /tmp wipes.
+
+### DoraHacks registration
+
+- Registration for Cortensor Hackathon #5 is open (DoraHacks' own
+  late-October 2026 newsletters list it as "Register Now"; build period
+  Oct 16 to Dec 18, 2026; page: https://dorahacks.io/hackathon/2418/detail).
+- Completing registration requires an interactive signed-in DoraHacks
+  session as CloudCorpRecords, which a background subagent cannot
+  operate; it was handed back for a browser task. No account was created
+  and no credentials, wallet, or payment info were entered.
+- The submission path is a PR to a dedicated Hackathon #5 repository
+  whose URL "will be added before kickoff" per the hackathon page; it is
+  still unpublished, so the submission PR is not actionable yet. Prize
+  terms mention $COR payout to a winner's wallet and possible
+  identity/eligibility checks at prize time (not at registration).
+
+This docs commit is the final commit of the push; the repo head after it
+is the final head SHA (verifiable via the API ref for `main`).
