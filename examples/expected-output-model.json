@@ -1,0 +1,89 @@
+{
+  "tool": "patchminion",
+  "mode": "model",
+  "fixture_fingerprint": "a0e871411cd5",
+  "log": [
+    "openminion sessions: patchminion-triage-101, patchminion-triage-102, patchminion-triage-103, patchminion-triage-105, patchminion-triage-106",
+    "issue #104: model run failed (ProviderError: INVALID_ARGUMENT: The configured model provider failed before it could return a decision (Tool transcript invariant failed). Please retry or switch models.); deterministic stub used for this issue",
+    "issue #106: model verdict rejected (labels outside vocabulary: ['chore']); deterministic stub used for this issue",
+    "model verdicts accepted: 4/6"
+  ],
+  "triage": [
+    {
+      "issue_number": 101,
+      "category": "bug",
+      "labels": [
+        "bug",
+        "crash",
+        "regression"
+      ],
+      "priority": "P0",
+      "summary": "App crashes immediately on launch for all Windows users after upgrading to 2.4.0, due to a NullPointerException in SessionStore.load. This is a regression from 2.3.1 that completely blocks startup on Windows.",
+      "first_response": "Thanks for the report \u2014 confirmed as a P0 regression since it prevents all Windows users from launching 2.4.0. We're prioritizing a fix for the NullPointerException in SessionStore.load (last working in 2.3.1). As a workaround, please roll back to 2.3.1. We'll post updates here as we investigate; a stack-trace-linked commit or repro details are welcome.",
+      "source": "model"
+    },
+    {
+      "issue_number": 102,
+      "category": "feature",
+      "labels": [
+        "enhancement",
+        "ui"
+      ],
+      "priority": "P3",
+      "summary": "Feature request to add PDF export for the monthly report in the dashboard, via an export button next to the existing CSV export button.",
+      "first_response": "Thanks for the suggestion! Exporting the monthly report as a PDF sounds like a useful addition. We've triaged this as a feature request and will consider adding a PDF export button alongside the CSV one in a future release. As an interim workaround, you can use your browser's print-to-PDF option on the report page.",
+      "source": "model"
+    },
+    {
+      "issue_number": 103,
+      "category": "question",
+      "labels": [
+        "question",
+        "documentation",
+        "api"
+      ],
+      "priority": "P3",
+      "summary": "User asks where to configure webhook retry frequency and whether a custom backoff can be set; the API docs mention that retries occur but do not document any settings for them. No defect reported \u2014 this is a how-to question that also exposes a documentation gap.",
+      "first_response": "Thanks for the question! Right now the retry interval/backoff for failed webhooks is not exposed as a configurable setting, and our docs only note that retries happen without describing the timing. Could you share your use case (e.g., how quickly you'd want retries and what backoff curve you need)? We'll flag the docs gap so the webhook retry behavior is documented explicitly, and if custom backoff isn't currently supported we'll convert this into a feature request and follow up here.",
+      "source": "model"
+    },
+    {
+      "issue_number": 104,
+      "category": "docs",
+      "labels": [
+        "documentation",
+        "api",
+        "good-first-issue"
+      ],
+      "priority": "P3",
+      "summary": "The README quickstart has a typo in the install command and the API example still uses the removed v1 endpoint",
+      "first_response": "Thanks for the report! Triage (automated stub): this looks like a docs (P3). A maintainer will confirm the suggested labels: documentation, api, good-first-issue.",
+      "source": "fallback"
+    },
+    {
+      "issue_number": 105,
+      "category": "bug",
+      "labels": [
+        "bug",
+        "performance",
+        "ui"
+      ],
+      "priority": "P1",
+      "summary": "Dashboard takes 20+ seconds to render and spikes browser CPU when a project exceeds 10k tasks, likely because the task list is rendered without pagination.",
+      "first_response": "Thanks for the detailed report \u2014 20+ second render times at 10k+ tasks is a serious performance problem. We've triaged this as a performance bug; our initial hypothesis matches yours, that the unpaginated task list is rendering all rows at once. To help us confirm while we profile the dashboard rendering path, could you share your browser/OS version and whether smaller projects (~5k tasks) still feel responsive?",
+      "source": "model"
+    },
+    {
+      "issue_number": 106,
+      "category": "chore",
+      "labels": [
+        "enhancement",
+        "security"
+      ],
+      "priority": "P1",
+      "summary": "Chore: bump the lodash dependency to 4",
+      "first_response": "Thanks for the report! Triage (automated stub): this looks like a chore (P1). A maintainer will confirm the suggested labels: enhancement, security.",
+      "source": "fallback"
+    }
+  ]
+}

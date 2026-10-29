@@ -1,0 +1,84 @@
+{
+  "tool": "patchminion",
+  "mode": "stub",
+  "fixture_fingerprint": "a0e871411cd5",
+  "log": [],
+  "triage": [
+    {
+      "issue_number": 101,
+      "category": "bug",
+      "labels": [
+        "bug",
+        "crash",
+        "regression"
+      ],
+      "priority": "P1",
+      "summary": "Since upgrading to 2",
+      "first_response": "Thanks for the report! Triage (automated stub): this looks like a bug (P1). A maintainer will confirm the suggested labels: bug, crash, regression.",
+      "source": "fallback"
+    },
+    {
+      "issue_number": 102,
+      "category": "feature",
+      "labels": [
+        "enhancement",
+        "ui"
+      ],
+      "priority": "P2",
+      "summary": "Feature request: it would be nice to export the monthly report as a PDF from the dashboard",
+      "first_response": "Thanks for the report! Triage (automated stub): this looks like a feature (P2). A maintainer will confirm the suggested labels: enhancement, ui.",
+      "source": "fallback"
+    },
+    {
+      "issue_number": 103,
+      "category": "question",
+      "labels": [
+        "question",
+        "api",
+        "good-first-issue"
+      ],
+      "priority": "P2",
+      "summary": "Question: I cannot find where to configure how often failed webhooks are retried",
+      "first_response": "Thanks for the report! Triage (automated stub): this looks like a question (P2). A maintainer will confirm the suggested labels: question, api, good-first-issue.",
+      "source": "fallback"
+    },
+    {
+      "issue_number": 104,
+      "category": "docs",
+      "labels": [
+        "documentation",
+        "api",
+        "good-first-issue"
+      ],
+      "priority": "P3",
+      "summary": "The README quickstart has a typo in the install command and the API example still uses the removed v1 endpoint",
+      "first_response": "Thanks for the report! Triage (automated stub): this looks like a docs (P3). A maintainer will confirm the suggested labels: documentation, api, good-first-issue.",
+      "source": "fallback"
+    },
+    {
+      "issue_number": 105,
+      "category": "bug",
+      "labels": [
+        "bug",
+        "performance",
+        "ui"
+      ],
+      "priority": "P2",
+      "summary": "Performance issue: the dashboard takes 20+ seconds to render when a project grows past 10k tasks",
+      "first_response": "Thanks for the report! Triage (automated stub): this looks like a bug (P2). A maintainer will confirm the suggested labels: bug, performance, ui.",
+      "source": "fallback"
+    },
+    {
+      "issue_number": 106,
+      "category": "chore",
+      "labels": [
+        "enhancement",
+        "security"
+      ],
+      "priority": "P1",
+      "summary": "Chore: bump the lodash dependency to 4",
+      "first_response": "Thanks for the report! Triage (automated stub): this looks like a chore (P1). A maintainer will confirm the suggested labels: enhancement, security.",
+      "source": "fallback"
+    }
+  ]
+}
